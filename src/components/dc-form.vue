@@ -1,6 +1,6 @@
 <template>
   <div clsss="form">
-    <slot name="default" is="rules"/>
+    <slot/>
   </div>
 </template>
 

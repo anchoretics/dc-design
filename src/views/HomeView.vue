@@ -130,7 +130,8 @@ export default {
         gender: '0'
       },
       formRules: {
-        name: {type: 'string', require: true}
+        name: {type: 'string', require: true},
+        gender: {type: 'string', require: false}
       }
     }
   },
