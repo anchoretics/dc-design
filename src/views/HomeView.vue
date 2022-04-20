@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="panel panel-success">
-      <div class="panel-heading"><h3 class="panel-title">列选择</h3></div>
+      <div class="panel-heading"><h3 class="panel-title">行选择</h3></div>
       <div class="panel-body">
         <dc-table striped bordered responsive row-select row-key="id" :headers="header_ellipse" :data="tableData" @rowSelect="tableSelected"/>
       </div>
@@ -54,14 +54,34 @@
         <dc-table striped bordered responsive :headers="header_customer" :data="tableData" :pagination="pagination" @change="tableChanged"/>
       </div>
     </div>
+    <div class="panel panel-success">
+      <div class="panel-heading"><h3 class="panel-title">表单验证</h3></div>
+      <div class="panel-body">
+        <dc-form :rules="formRules">
+          <dc-form-item prop="name" label="姓名">
+            <dc-input v-model.trim="formData.name"></dc-input>
+          </dc-form-item>
+          <dc-form-item prop="gender" label="性别">
+            <dc-select v-model="formData.gender">
+              <option value="0">男</option>
+              <option value="1">女</option>
+            </dc-select>
+          </dc-form-item>
+        </dc-form>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import DcTable from "@/components/dc-table";
+import DcForm from "@/components/dc-form";
+import DcFormItem from "@/components/dc-form-item";
+import DcInput from "@/components/dc-input";
+import DcSelect from "@/components/dc-select";
 export default {
   name: 'HomeView',
-  components: { DcTable },
+  components: { DcTable, DcForm, DcFormItem, DcInput, DcSelect },
   data() {
     return {
       header: [
@@ -104,6 +124,13 @@ export default {
         page: 1,
         size: 10,
         total: 100
+      },
+      formData: {
+        name: '',
+        gender: '0'
+      },
+      formRules: {
+        name: {type: 'string', require: true}
       }
     }
   },
